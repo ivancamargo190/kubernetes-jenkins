@@ -278,7 +278,7 @@ Select **Manage Jenkins**>**Manage Plugins**. Select the **Available** tab and e
 Select **Download now and install after restart** \
 On the following page, choose **Restart Jenkins when installation is complete and no jobs are running**
 
-After a few minutes, if the status does not change, select **Return to Dashboard** and complete the login prompt.
+After a few minutes, if the status does not change, select **Return to Dashboard** and complete the login prompt. An ENABLE AUTO REFRESH link is avaible in the upper right of the window but the results aren't consistant across browsers. Again, if after waiting a few minutes for auto-refresh to update, replace to the current brower URL with the welcome page URL, `http://<HostName>/<JenkinsUriPrefix>`
 
 ### Configuring the Kubernetes Credentials and Plugin
 
