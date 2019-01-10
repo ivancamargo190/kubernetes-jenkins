@@ -48,7 +48,7 @@ spec:
 ### Build a Custom Jenkins Slave Image for using the Kubernetes/Helm CLI plugin
 The default jenkins/jnlp-slave image does not contain the kubectl or helm binaries, so you will need to build a custom image to use the kubernetes-cli plugin. Afterwards, push it to a registry\
 `$ cd jnlp-slave` \
-`$ docker build jenkins-slave-k8s .` \
+`$ docker build -t jenkins-slave-k8s .` \
 `$ docker tag jnlp-slave-k8s <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1`\
 `$ docker push <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1` \
 `$ cd ..` 
