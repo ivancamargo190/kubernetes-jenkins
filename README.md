@@ -242,7 +242,7 @@ Configure the Kubernetes plugin in Jenkins to use the following Service Account 
   Create a Jenkins credential of type Kubernetes service account with service account name jenkins
   Under configure Jenkins -- Update the credentials config in the cloud section to use the service account credential you created in the step above.
 ```
-Run `$ watch kubectl get pods` to monitor the pod creation status or simply run `kubectl get pods` until the output reports the pod is "Running", for instance:
+Run `$ watch kubectl get pods` to monitor the pod creation status or simply run `kubectl get pods` until the output reports the pod is "Running". Note: Transitioning from "Init" to "Running" may take 5-10 minutes.
 ```
 NAME                       READY   STATUS    RESTARTS   AGE
 jenkins-7d48db75c5-2mpn9   1/1     Running   0          5m
