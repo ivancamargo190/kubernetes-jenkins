@@ -265,38 +265,9 @@ Password: **VMware1!**
 
 > If at any time while attempting to access the Jenkins Web UI, you receive a browser error, i.e. 502, clear the browser cache and restart it or either open an "New Incognito Window" (Google Chrome) or "New Private Window" (Firefox).
 
-After logging in, you may notice an red administrative monitor alert near the top of the page. Select it to review the alert message.  Most likely, a dependency is required or a plugin update is available. Select **Correct**
-
-![alt text](https://github.com/csaroka/kubernetes-jenkins/blob/master/images/jenkins-updates.png)
-
 ### Installing the Required Updates and Plugins
 
-Choose the updates to install and select **Download now and install after restart** . On the following page, choose **Restart Jenkins when installation is complete and no jobs are running**
-
-After a few minutes, if the status does not change, select **Return to Dashboard** and complete the login prompt. \
-
-From the dashboard, select **Manage Jenkins** and scroll down to select **Manage Plugins** . Then, choose the updates to install and select **Download now and install after restart** .  On the following page, choose **Restart Jenkins when installation is complete and no jobs are running**
-
-After a few minutes, if the status does not change, select **Return to Dashboard**. 
-
-> Its possible the Web UI service will not automatically recover and report a "502 Bad Gateway" error. Because we configured Jenkins to use persistance storage, we just need to reset the pod.
-
-Return to the command-line and run \
-`$ kubectl get pods`
-```
-NAME                       READY   STATUS    RESTARTS   AGE
-jenkins-7d48db75c5-xq98t   1/1     Running   0          42m
-```
-To force a pod reset, run \
-`$ kubectl delete pod jenkins-<uuid>` \
-Run `$ watch kubectl get pods` to monitor the pod creation status or simply run `kubectl get pods` until the output reports the pod is "Running"
-
-> Simply refreshing a stale browser page will most likely result in receiving a "502 Bad Gateway" error. First wait 2-3 minutes then, clear the browser cache and restart it or either open an "New Incognito Window" (Google Chrome) or "New Private Window" (Firefox).  
-
-Afterwards, direct the web browser to Jenkins Welcome Page:
-`http://<HostName>/<JenkinsUriPrefix>`
-
-Enter the login credentials and from the Dashboard select **Manage Jenkins**>**Manage Plugins**. Select the **Available** tab and enter "kubernetes" in the search filter. Choose the following plugin options:
+Select **Manage Jenkins**>**Manage Plugins**. Select the **Available** tab and enter "kubernetes" in the search filter. Choose the following plugin options:
 	
 - Kubernetes Continuous Deploy
 - Kubernetes Cli
