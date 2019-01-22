@@ -416,7 +416,7 @@ Both projects shall complete successfully \
 ### Kubernetes plugin - Create and Run a Declarative Pipeline
 Return to the Dashboard and Select **New Item** \
 *Enter an Item Name* such as **Declarative Pipeline Example**, select **Pipeline**, and select **OK**
-Scroll to the *Pipeline* section, paste the content from [Declarative Pipeline Example](https://raw.githubusercontent.com/csaroka/kubernetes-jenkins/master/jenkins-pipeline-examples/declarative-pipeline-01)
+Scroll to the *Pipeline* section, paste the content from [Declarative Pipeline Example](https://raw.githubusercontent.com/csaroka/jenkins-kubernetes-plugin/master/examples/declarative-multiple-containers.groovy)
 into the *Script* field, and select **OK*
 From the Dashboard, select **Build Now**
 
