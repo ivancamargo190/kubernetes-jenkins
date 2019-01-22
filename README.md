@@ -477,4 +477,4 @@ Select **OK**
 References: 
 - [Jenkins plugin to run dynamic slaves in a Kubernetes/Docker environment](https://github.com/jenkinsci/kubernetes-plugin/tree/master/examples)
 - [Kubernetes Tutorials-CI/CD Pipeline](https://kubernetes.io/docs/tutorials/#ci-cd-pipeline)
-
+- [Jenkins Helm Chart](https://github.com/helm/charts/tree/master/stable/jenkins)
