@@ -9,7 +9,7 @@ Integrate Jenkins with PKS provisioned Kubernetes Cluster
 
 ### Create the project Namespace
 `$ kubectl create ns jenkins` \
-`$ kubectl set-context <CONTEXT_NAME> namespace=jenkins`
+`$ kubectl config set-context $(kubectl config current-context) --namespace=jenkins`
 
 ### Prepare Persistence Storage
 #### Create a storage class
@@ -47,7 +47,7 @@ spec:
 
 ### Build a Custom Jenkins Slave Image for using the Kubernetes/Helm CLI plugin
 The default jenkins/jnlp-slave image does not contain the kubectl or helm binaries, so you will need to build a custom image to use the kubernetes-cli plugin. Afterwards, push it to a registry\
-`$ cd jnlp-slave` \
+`$ cd jnlp-slave-image` \
 `$ docker build -t jenkins-slave-k8s .` \
 `$ docker tag jnlp-slave-k8s <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1`\
 `$ docker push <Private Registry FQDN>/<Project>/jenkins-slave-k8s:v1` \
@@ -138,7 +138,7 @@ or comment out the parameter to randomly generate a password for you
 ##### Set the Ingress Hostname
 >Note: The hostname is customizable but the domain needs to match cluster's ingress controller's wildcard record in DNS. For example, *.pksk8s01apps.lab.local
 ```
-HostName: jenkins.pksk8s01apps.lab.local
+HostName: jenkins.k8s01apps.lab.local
 ```
 ##### (Optional) Set the path
 ```
@@ -157,7 +157,7 @@ ServiceType: LoadBalancer
 
 Comment out Ingress Hostname and URI Prefix: 
 ```
-# HostName: jenkins.pksk8s01apps.lab.local
+# HostName: jenkins.k8s01apps.lab.local
 # JenkinsUriPrefix: "/jenkins"
 ```
 #### Configure Persistence
@@ -179,9 +179,6 @@ Save changes to `values.yaml` and close
 
 `$ cd ..` \
 or `cd` to the directory containing the Jenkins chart directory
-
-Use `$ kubectl config view` to verify context and namespace or set with \
-`$ kubectl set-context <CONTEXT_NAME> namespace=jenkins`
 
 ### Use the Helm client to install the chart to the cluster
 `$ helm install --name=jenkins ./jenkins`
@@ -232,7 +229,7 @@ NOTES:
 1. Get your 'admin' user password by running:
   printf $(kubectl get secret --namespace jenkins jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
 
-2. Visit http://jenkins.pksk8s01apps.lab.local
+2. Visit http://jenkins.k8s01apps.lab.local
 
 3. Login with the password from step 1 and the username: admin
 
@@ -250,7 +247,7 @@ jenkins-7d48db75c5-2mpn9   1/1     Running   0          5m
 ## Access the Jenkins Web UI for Initial Configuration
 
 >The `NOTE No 2.` from the helm install output does not account for a URI Prefix, if set in the values.yaml. If you did not change the value.yaml option: `JenkinsUriPrefix: "/jenkins"`, the `NOTE No 2.` should actually indicate to: \
-`Visit http://jenkins.pksk8s01apps.lab.local/jenkins`
+`Visit http://jenkins.k8s01apps.lab.local/jenkins`
 
 Open a web browser to (parameters from values.yaml):
 `http://<HostName>/<JenkinsUriPrefix>`
